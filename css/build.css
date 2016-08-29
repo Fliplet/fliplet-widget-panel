@@ -1,0 +1,110 @@
+.panels-placeholder {
+	border: 1px solid #cccccc;
+	background-color: rgba(217, 221, 222, 0.5);
+	text-align: center;
+	display: block;
+	padding: 20px;
+	color: #333333;
+	font-size: 32px;
+	cursor: pointer;
+	-webkit-user-select: none !important;
+	-ms-user-select: none !important;
+	user-select: none !important;
+	-webkit-user-modify: read-only !important;
+}
+.list-panels ul {
+	text-align: justify;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	font-size: 0;
+}
+.list-panels .panels {
+	position: relative;
+	display: inline-block;
+	font-size: 16px;
+}
+.list-panels.new ul > li {
+	-webkit-box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.25);
+	box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.25);
+}
+.three-columns .panels {
+	width: 100%;
+	padding-top: 50%;
+	margin-bottom: 10px;
+}
+.new.three-columns .panels {
+	padding-top: 0;
+	border-radius: 6px;
+}
+.panel-gap {
+	display: inline-block;
+	position: relative;
+}
+.three-columns .panel-gap {
+	width: 100%;
+}
+.list-panels ul > li .list-image {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+}
+.list-panels.new ul > li .list-image {
+	position: relative;
+	width: 100%;
+	padding-top: 50%;
+	border-radius: 6px 6px 0 0;
+}
+.list-panels ul > li .list-desc {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	padding: 10px;
+	background: rgba(255, 255, 255, 0.8);
+	max-height: 100%;
+	overflow: hidden;
+	text-align: left;
+}
+.list-panels.new ul > li .list-desc {
+	position: relative;
+	background: #FFF;
+	padding: 30px 20px;
+	border-radius: 0 0 6px 6px;
+}
+.list-panels .list-desc .list-title {
+	font-size: 1em;
+	font-weight: bold;
+	margin: 0;
+}
+.list-panels .list-desc .list-title + p {
+	font-size: 0.9em;
+	margin: 0.5em 0 0;
+}
+.list-panels.new .list-desc .list-title + p {
+	font-size: 0.9em;
+	color: #999;
+	margin: 0.5em 0 0;
+	font-weight: 200;
+}
+@media (min-width: 640px) {
+	.three-columns .panels {
+		width: 32.44%;
+		padding-top: 18.4%;
+		margin-right: 9px;
+	}
+	.three-columns .panels:nth-child(3) {
+		margin-right: 0;
+	}
+	.three-columns .panel-gap {
+		width: 32.44%;
+	}
+	.new.three-columns .panels {
+		padding-top: 0;
+	}
+	.list-panels.new ul > li .list-image {
+		padding-top: 56.72%;
+	}
+}

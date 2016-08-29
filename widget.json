@@ -1,0 +1,38 @@
+{
+  "name": "Panels",
+  "package": "com.fliplet.panels",
+  "version": "1.0.0",
+  "icon": "img/icon.png",
+  "tags": ["type:component", "category:panels"],
+  "provider_only": false,
+  "providers": [
+    "com.fliplet.link",
+    "com.fliplet.image-manager"
+  ],
+  "interface": {
+    "dependencies": [
+      "fliplet-core",
+      "fliplet-studio-ui",
+      "jquery-ui",
+      "lodash",
+      "handlebars",
+      "bootstrap"
+    ],
+    "assets": [
+      "js/interface.js",
+      "css/interface.css"
+    ]
+  },
+  "build": {
+    "dependencies": [
+      "fliplet-core",
+      "fliplet-navigate",
+      "bootstrap-css",
+      "lodash"
+    ],
+    "assets": [
+      "js/build.js",
+      "css/build.css"
+    ]
+  }
+}

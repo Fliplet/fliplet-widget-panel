@@ -1,0 +1,31 @@
+{{#if id}}
+<div data-panels-id="{{id}}" class="list-panels three-columns new fl-widget-instance">
+    <ul>
+      <li class="panels ">
+        <div class="list-image" style="background-color: #f44336;"></div>
+        <div class="list-desc">
+          <p class="list-title">List item 1</p>
+          <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam.</p>
+        </div>
+      </li>
+      <li class="panels ">
+        <div class="list-image" style="background-color: #8bc34a"></div>
+        <div class="list-desc">
+          <p class="list-title">List item 2</p>
+          <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam.</p>
+        </div>
+      </li>
+      <li class="panels ">
+        <div class="list-image" style="background-color: #00bcd4;"></div>
+        <div class="list-desc">
+          <p class="list-title">List item 3</p>
+          <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam.</p>
+        </div>
+      </li>
+      <li class="panel-gap"></li>
+      <li class="panel-gap"></li>
+    </ul>
+</div>
+{{else}}
+  <span data-panels-id="{{id}}" class="panels-placeholder"><i class="fa fa-square" aria-hidden="true"></i></i></span>
+{{/if}}
