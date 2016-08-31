@@ -2,6 +2,8 @@
 <div data-panels-id="{{id}}" class="list-panels three-columns new fl-widget-instance">
     <ul>
       {{#each items}}
+      <li class="panels" data-panel-item-id="{{id}}">
+        <div class="list-image" style="background-color: {{color}}; {{#if imageConf}} background: url('{{imageConf.url}}'){{/if}}"></div>
         <div class="list-desc">
           <p class="list-title">{{title}}</p>
           <p>{{description}}</p>
