@@ -66,7 +66,7 @@ $(".tab-content")
           id = $item.data('id');
 
       _.remove(data.items, {id: id});
-      _.remove(linkPromises,{id:id});
+      _.remove(linkPromises,{id: id});
 
       $(this).parents('.panel').remove();
       checkPanelLength();
@@ -111,7 +111,7 @@ $(".tab-content")
           id = $item.data('id'),
           item = _.find(data.items, {id: id});
 
-      _.remove(linkPromises,{id:id});
+      _.remove(linkPromises,{id: id});
       $('[data-id="' + item.id + '"] .add-link').empty();
       $(this).addClass('hidden');
       $(this).siblings('.list-item-set-link').removeClass('hidden');
@@ -190,7 +190,11 @@ $(".tab-content")
 function colorIsValid(color){
   return /^#[0-9A-F]{6}$/i.test(color) && ((color == "white" || color == "#FFFFFF")|| $testElement.css('background-color') != "rgb(255, 255, 255)");
 }
+
 function initLinkProvider(item){
+
+  item.linkAction = item.linkAction || {};
+  item.linkAction.provId = item.id;
 
   var linkActionProvider = Fliplet.Widget.open('com.fliplet.link', {
     // If provided, the iframe will be appended here,
@@ -209,9 +213,10 @@ function initLinkProvider(item){
   });
 
   linkActionProvider.then(function (data) {
-    item.linkAction = data.data;
+    item.linkAction = data ? data.data: {};
     return Promise.resolve();
   });
+
   linkActionProvider.id = item.id;
   linkPromises.push(linkActionProvider);
 }
