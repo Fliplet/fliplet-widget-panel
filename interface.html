@@ -14,7 +14,11 @@
             {{#each items}}
               <div class="panel panel-default" data-id="{{id}}">
                 <div class="panel-heading ui-sortable-handle">
-                  <h4 class="panel-title" data-toggle="collapse" data-parent="#accordion" data-target="#collapse-{{id}}"><span class="fa fa-chevron-down"></span>
+                  <h4 class="panel-title" data-toggle="collapse" data-parent="#accordion" data-target="#collapse-{{id}}">
+                    <div class="screen-reorder-handle">
+                      <i class="fa fa-ellipsis-v"></i><i class="fa fa-ellipsis-v"></i>
+                    </div>
+                    <span class="fa fa-chevron-down"></span>
                     <span class="panel-title-text">{{#unless title}}
                         Panel item {{number}}
                       {{else}}
@@ -22,7 +26,6 @@
                       {{/unless}}</span>
                   </h4>
                   <a href="#"><span class="icon-delete fa fa-trash"></span></a>
-                  <span class="icon-sort fa fa-arrows-v"></span>
                 </div>
                 <div id="collapse-{{id}}" class="panel-collapse collapse in">
                   <div class="panel-body">
@@ -128,9 +131,14 @@
   <template id="template-panel">
     <div class="panel panel-default" data-id="\{{id}}">
       <div class="panel-heading ui-sortable-handle">
-        <h4 class="panel-title" data-toggle="collapse" data-parent="#accordion" data-target="#collapse-\{{id}}"><span class="fa fa-chevron-down"></span><span class="panel-title-text">Panel title \{{number}}</span></h4>
+        <h4 class="panel-title" data-toggle="collapse" data-parent="#accordion" data-target="#collapse-\{{id}}">
+          <div class="screen-reorder-handle">
+            <i class="fa fa-ellipsis-v"></i><i class="fa fa-ellipsis-v"></i>
+          </div>
+          <span class="fa fa-chevron-down"></span>
+          <span class="panel-title-text">Panel title \{{number}}</span>
+        </h4>
         <a href="#"><span class="icon-delete fa fa-trash"></span></a>
-        <span class="icon-sort fa fa-arrows-v"></span>
       </div>
       <div id="collapse-\{{id}}" class="panel-collapse collapse in">
         <div class="panel-body">

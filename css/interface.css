@@ -107,10 +107,10 @@ header a {
     -webkit-transform: translate3d(0, 0, 0) scale(1.03);
 }
 .panel-group .panel {
-    border-radius: 6px;
+    border-radius: 0;
     overflow: hidden;
 }
-.panel.focus .glyphicon-remove {
+.panel.focus .icon-delete {
     opacity: 0 !important;
     -webkit-transition: opacity 50ms linear;
 }
@@ -120,6 +120,7 @@ header a {
 .panel-default > .panel-heading {
     background-color: #e4e9eb;
     border-color: #d3dbde;
+    border-radius: 0;
 }
 .panel-heading {
     position: relative;
@@ -130,8 +131,7 @@ header a {
     cursor: -moz-grab;
 }
 .panel-heading h4 {
-    padding: 10px 15px;
-    width: 82%;
+    padding: 10px 40px 10px 6px;
 }
 .panel-heading .fa-chevron-down,
 .panel-heading .fa-chevron-right {
@@ -143,25 +143,26 @@ header a {
 .panel-heading .icon-delete {
     position: absolute;
     top: 0;
-    right: 30px;
-    padding: 10px 12px;
+    right: 0;
     opacity: 0;
     color: #E60000;
-    width: auto;
+    width: 38px;
+    height: 38px;
+    line-height: 38px;
+    text-align: center;
 }
 .panel-heading:hover .icon-delete {
     opacity: 1;
 }
-.panel-heading .icon-sort {
-    position: absolute;
-    top: 0;
-    right: 0;
-    padding: 10px 12px;
-    opacity: 0;
-    width: auto;
-}
-.panel-heading:hover .icon-sort {
-    opacity: 1;
+.panel-heading .screen-reorder-handle {
+    display: block;
+    width: 2.4rem;
+    float: left;
+    margin-right: 6px;
+    text-align: center;
+    border-right: 1px solid #999;
+    opacity: 0.7;
+    line-height: 18px;
 }
 .panel-collapse {
     opacity: 0;
