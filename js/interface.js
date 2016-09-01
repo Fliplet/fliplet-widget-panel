@@ -173,6 +173,7 @@ $(".tab-content")
       addListItem(item);
 
       checkPanelLength();
+
       save();
     })
     .on('show.bs.collapse', '.panel-collapse', function() {
@@ -280,11 +281,17 @@ function addListItem(data) {
 
 function checkPanelLength() {
   if ( $('.panel').length > 0 ) {
+    if($('.panel').length > 1) {
+      $('.expand-items').removeClass("hidden");
+    } else {
+      $('.expand-items').addClass("hidden");
+    }
     if ( !$('.panels-empty').hasClass('hidden') ) {
       $('.panels-empty').addClass('hidden');
     }
   } else {
     $('.panels-empty').removeClass('hidden');
+    $('.expand-items').addClass("hidden");
   }
 }
 
