@@ -1,17 +1,17 @@
 {{#if items.length}}
-<div data-panels-id="{{id}}" class="list-panels three-columns new fl-widget-instance">
+<div data-panels-id="{{id}}" class="list-panels three-columns fl-widget-instance">
     <ul>
       {{#each items}}
       <li class="panels" data-panel-item-id="{{id}}">
-        <div class="list-image" style="background-color: {{color}}; {{#if imageConf}} background: url('{{imageConf.url}}'){{/if}}"></div>
+        <div class="list-image" style="background-color: {{color}}; {{#if imageConf}} background-image: url('{{imageConf.url}}'){{/if}}"></div>
         <div class="list-desc">
           <p class="list-title">{{title}}</p>
           <p>{{description}}</p>
         </div>
       </li>
-      <li class="panel-gap"></li>
-      <li class="panel-gap"></li>
       {{/each}}
+      <li class="panel-gap"></li>
+      <li class="panel-gap"></li>
     </ul>
 </div>
 {{else}}
