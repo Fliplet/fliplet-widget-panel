@@ -76,7 +76,7 @@
 		width: 32.44%;
 		margin-right: 9px;
 	}
-	.three-columns .panels:nth-child(3) {
+	.three-columns .panels:nth-child(3n+3) {
 		margin-right: 0;
 	}
 	.three-columns .panel-gap {

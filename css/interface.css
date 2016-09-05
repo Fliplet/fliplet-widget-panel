@@ -6,6 +6,7 @@ body {
     top: 0;
     bottom: 0;
     width: 100%;
+    background-color: transparent;
 }
 .fl-widget-provider {
     border: 0;
@@ -19,6 +20,9 @@ body {
     height: 100%;
     padding: 15px;
     overflow: auto;
+}
+.add-link {
+    margin-top: 10px;
 }
 /*BUTTONS*/
 .btn {
@@ -231,10 +235,6 @@ header a {
 .panel-body {
     padding: 0;
 }
-.form-horizontal .control-label {
-    padding-top: 13px;
-    text-align: right;
-}
 label {
     font-weight: normal;
     color: #14505e;
@@ -282,16 +282,8 @@ textarea.form-control {
     max-width: 100%;
     max-height: 44px;
 }
-.text-remove {
+.thumb-holder .image-remove {
     margin-left: 10px;
-    padding: 0;
-    color: #E60000;
-}
-.text-remove:hover {
-    color: #a90303;
-}
-.thumb-holder .text-remove {
-    float: left;
 }
 h2 small {
     color: #14505e;
