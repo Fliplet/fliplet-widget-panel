@@ -179,6 +179,20 @@ $(".tab-content")
       $('.tab-content').trigger('scroll');
     });
 
+var contentHeight = $('body > .form-horizontal').outerHeight();
+var tabPaneTopPadding = 78;
+
+$('body > .form-horizontal').scroll(function(event) {
+	var tabContentScrollPos = Math.abs($('.tab-pane-content').position().top - tabPaneTopPadding);
+	var tabPaneHeight = tabPaneTopPadding + $('.tab-pane-content').height();
+
+	if (tabPaneHeight - tabContentScrollPos > contentHeight) {
+		$('body').addClass('controls-sticky-on');
+	} else {
+		$('body').removeClass('controls-sticky-on');
+	}
+});
+
 // FUNCTIONS
 
 function colorIsValid(color){
