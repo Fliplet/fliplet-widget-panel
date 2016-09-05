@@ -19,6 +19,8 @@
       "bootstrap"
     ],
     "assets": [
+      "vendor/color-picker.js",
+      "vendor/color-picker.css",
       "js/interface.js",
       "css/interface.css"
     ]

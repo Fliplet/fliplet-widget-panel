@@ -10,6 +10,7 @@ _.forEach(data.items,function (item){
   if(_.isObject(item.linkAction)) {
     initLinkProvider(item);
   }
+  initColorPicker(item);
 });
 
 var listLength = data.items.length + 1;
@@ -57,6 +58,8 @@ setTimeout (function() {
 $('#help_tip').on('click', function() {
   alert("During beta, please use live chat and let us know what you need help with.");
 });
+
+checkPanelLength();
 
 // EVENTS
 $(".tab-content")
@@ -138,17 +141,7 @@ $(".tab-content")
       debounceSave();
     }).on('keyup change blur paste', '.list-item-desc', function() {
       debounceSave();
-    }).on('keyup change blur paste', '.list-item-color', function() {
-      var $this = $(this);
-
-      var color = $this.val();
-      $testElement.css('background-color', color);
-      color = colorIsValid ? $this.val() : "white";
-      $this.siblings('div').css('background-color', color);
-      $testElement.css('background-color', "white");
-      debounceSave();
-    })
-    .on('click', '.expand-items', function() {
+    }).on('click', '.expand-items', function() {
       // Update accordionCollapsed if all panels are collapsed/expanded
       if (!$('.panel-collapse.in').length) {
         accordionCollapsed = true;
@@ -277,6 +270,33 @@ function setListItemTitle(index, title) {
 
 function addListItem(data) {
   $accordionContainer.append(templates.panel(data));
+  initColorPicker(data);
+}
+
+function initColorPicker(item){
+  var picker = new CP(document.querySelector('#list-item-color-'+item.id));
+
+  picker.on("change", function(color) {
+    this.target.value = '#' + color;
+    $($(this.target).siblings('div')[0]).css('background-color', '#'+color);
+    debounceSave();
+
+  }, 'main-change');
+
+  var colors = ['1d3f68', '00abd2', '036b95', 'ffd21d', 'ed9119', 'e03629', '831811', '5e0f0f', '23a437', '076c31'], box;
+
+  for (var i = 0, len = colors.length; i < len; ++i) {
+    box = document.createElement('span');
+    box.className = 'color-picker-box';
+    box.title = '#' + colors[i];
+    box.style.backgroundColor = '#' + colors[i];
+    box.addEventListener("click", function(e) {
+      picker.set(this.title);
+      picker.trigger("change", [this.title.slice(1)], 'main-change');
+      e.stopPropagation();
+    }, false);
+    picker.picker.firstChild.appendChild(box);
+  }
 }
 
 function checkPanelLength() {

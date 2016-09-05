@@ -3,10 +3,10 @@
     <ul>
       {{#each items}}
       <li class="panels" data-panel-item-id="{{id}}">
-        <div class="list-image" style="background-color: {{color}}; {{#if imageConf}} background-image: url('{{imageConf.url}}'){{/if}}"></div>
+        <div class="list-image" style="background-color: {{color}};{{#if imageConf}} background-image: url('{{imageConf.url}}'){{/if}}"><p class=hidden></p></div>
         <div class="list-desc">
           <p class="list-title">{{title}}</p>
-          <p>{{description}}</p>
+          {{#if description}}<p>{{description}}</p>{{/if}}
         </div>
       </li>
       {{/each}}
