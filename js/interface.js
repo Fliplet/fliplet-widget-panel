@@ -127,7 +127,6 @@ $(".tab-content")
           item = _.find(data.items, {id: id});
 
       item.imageConf = null;
-      $('[data-id="' + id + '"] .list-item-color').prop("disabled", false);
       $(this).parents('.add-image-holder').find('.add-image').text('Add image');
       $(this).parents('.add-image-holder').find('.thumb-holder').addClass('hidden');
       save();
@@ -135,11 +134,11 @@ $(".tab-content")
     .on('click', '.change-color', function() {
       alert('You will be able to set up a color for this list item.');
     })
-    .on('keyup change blur', '.list-item-title', function() {
+    .on('keyup change paste', '.list-item-title', function() {
       var $listItem = $(this).parents('.panel');
       setListItemTitle($listItem.index(), $(this).val());
       debounceSave();
-    }).on('keyup change blur paste', '.list-item-desc', function() {
+    }).on('keyup change paste', '.list-item-desc', function() {
       debounceSave();
     }).on('click', '.expand-items', function() {
       // Update accordionCollapsed if all panels are collapsed/expanded
@@ -194,11 +193,6 @@ $('body > .form-horizontal').scroll(function(event) {
 });
 
 // FUNCTIONS
-
-function colorIsValid(color){
-  return /^#[0-9A-F]{6}$/i.test(color) && ((color == "white" || color == "#FFFFFF")|| $testElement.css('background-color') != "rgb(255, 255, 255)");
-}
-
 function initLinkProvider(item){
 
   item.linkAction = item.linkAction || {};
@@ -246,7 +240,6 @@ function initImageProvider(item){
 
   imageProvider.then(function (data) {
     item.imageConf = data.data;
-    $('[data-id="' + item.id + '"] .list-item-color').prop("disabled", true);
     $('[data-id="' + item.id + '"] .thumb-image img').attr("src",data.data.thumbnail);
     save();
     return Promise.resolve();
