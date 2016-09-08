@@ -92,7 +92,6 @@ $(".tab-content")
       }
       $(this).addClass('hidden');
       $(this).siblings('.link-remove').show();
-      save();
 
     })
     .on('click', '.add-image', function() {
@@ -335,19 +334,21 @@ function save(notifyComplete){
     item.color = $('#list-item-color-'+item.id).val();
   });
 
-  Promise.all(linkPromises).then(function () {
-    // when all providers have finished
-    Fliplet.Widget.save(data).then(function () {
-      if(notifyComplete) {
-        Fliplet.Widget.complete();
-        return;
-      }
-      Fliplet.Studio.emit('reload-widget-instance', widgetId);
+  if(notifyComplete) {
+    Promise.all(linkPromises).then(function () {
+      // when all providers have finished
+      Fliplet.Widget.save(data).then(function () {
+          Fliplet.Widget.complete();
+      });
     });
-  });
 
-  // forward save request to all providers
-  linkPromises.forEach(function (promise) {
-    promise.forwardSaveRequest();
+    // forward save request to all providers
+    linkPromises.forEach(function (promise) {
+      promise.forwardSaveRequest();
+    });
+  }
+
+  Fliplet.Widget.save(data).then(function () {
+    Fliplet.Studio.emit('reload-widget-instance', widgetId);
   });
 }

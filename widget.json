@@ -5,6 +5,7 @@
   "icon": "img/icon.png",
   "tags": ["type:component", "category:panels"],
   "provider_only": false,
+  "html_tag": "div",
   "providers": [
     "com.fliplet.link",
     "com.fliplet.image-manager"
