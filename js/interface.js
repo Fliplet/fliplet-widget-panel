@@ -114,6 +114,7 @@ $(".tab-content")
           item = _.find(data.items, {id: id});
 
       _.remove(linkPromises,{id: id});
+      item.linkAction = null;
       $('[data-id="' + item.id + '"] .add-link').empty();
       $(this).addClass('hidden');
       $(this).siblings('.list-item-set-link').removeClass('hidden');

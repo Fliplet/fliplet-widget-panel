@@ -1,4 +1,4 @@
-$('[data-panel-item-id]').click(function (event) {
+$('.linked[data-panel-item-id]').click(function (event) {
     event.preventDefault();
 
     var data = Fliplet.Widget.getData($(this).parents('[data-panels-id]').data('panels-id'));
