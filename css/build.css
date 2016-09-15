@@ -62,6 +62,7 @@
 	max-height: 100%;
 	overflow: hidden;
 	text-align: left;
+	word-wrap: break-word;
 }
 .list-panels .list-desc .list-title {
 	font-size: 1em;
