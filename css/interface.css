@@ -12,6 +12,7 @@ body {
     border: 0;
     width: 100%;
     background-color: transparent;
+    padding: 15px;
 }
 #action {
     overflow: hidden;
