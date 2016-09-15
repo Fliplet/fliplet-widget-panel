@@ -1,0 +1,17 @@
+{{#if items.length}}
+<div data-panels-id="{{id}}" class="list-panels three-columns">
+    <ul>
+      {{#each items}}
+      <li class="panels{{#if linkAction}} linked{{/if}}" data-panel-item-id="{{id}}">
+        <div class="list-image" style="background-color: {{color}};{{#if imageConf}} background-image: url('{{imageConf.url}}'){{/if}}"><p class=hidden></p></div>
+        <div class="list-desc">
+          <p class="list-title">{{title}}</p>
+          {{#if description}}<p>{{description}}</p>{{/if}}
+        </div>
+      </li>
+      {{/each}}
+    </ul>
+</div>
+{{else}}
+  <span data-panels-id="{{id}}" class="panels-placeholder"><i class="fa fa-square" aria-hidden="true"></i></span>
+{{/if}}
