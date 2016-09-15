@@ -276,8 +276,16 @@ function setListItemTitle(index, title) {
 }
 
 function addListItem(data) {
-  $accordionContainer.append(templates.panel(data));
+  var $newPanel = $(templates.panel(data));
+  $accordionContainer.append($newPanel);
   initColorPicker(data);
+
+  $newPanel.find('.form-control:eq(0)').select();
+  $('.form-horizontal').stop().animate({
+    scrollTop: $('.tab-content').height()
+  }, 200, function(){
+    $('.form-horizontal').trigger('scroll');
+  });
 }
 
 function initColorPicker(item){
