@@ -80,6 +80,16 @@ body {
 a {
     color: #00abd2;
 }
+.btn-link.text-danger {
+    color: #d9534f;
+}
+.btn-link:active.text-danger,
+.btn-link:active:focus.text-danger,
+.btn-link:active:hover.text-danger,
+.btn-link:focus.text-danger,
+.btn-link:hover.text-danger {
+    color: #c9302c;
+}
 header {
     display: flex;
     font-size: 0.8em;
