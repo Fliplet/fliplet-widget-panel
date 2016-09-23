@@ -1,11 +1,5 @@
-.panels-placeholder {
-	border: 1px solid #cccccc;
-	background-color: rgba(217, 221, 222, 0.5);
-	text-align: center;
-	display: block;
-	padding: 20px;
-	color: #333333;
-	font-size: 32px;
+.list-panels.placeholder {
+	opacity: 0.5;
 	cursor: pointer;
 	-webkit-user-select: none !important;
 	-ms-user-select: none !important;
@@ -14,7 +8,7 @@
 }
 .list-panels ul {
 	display: -webkit-flex;
-	-webkit-flex-flow: row-reverse wrap;
+	-webkit-flex-flow: row wrap;
 	display: flex;
 	flex-flow: row wrap;
 	margin: 0;
@@ -28,7 +22,7 @@
 	column-break-inside: avoid;
 }
 .list-panels ul > li {
-	border: 1px solid #efefef;
+	border: 1px solid #e0e0e0;
 }
 .three-columns .panels {
 	width: 98%;
