@@ -344,10 +344,11 @@ function save(notifyComplete){
   });
 
   if(notifyComplete) {
-    Promise.all(linkPromises).then(function () {
+    Fliplet.Widget.all(linkPromises).then(function () {
       // when all providers have finished
       Fliplet.Widget.save(data).then(function () {
-          Fliplet.Widget.complete();
+        // Close the interface for good
+        Fliplet.Widget.complete();
       });
     });
 
@@ -355,9 +356,10 @@ function save(notifyComplete){
     linkPromises.forEach(function (promise) {
       promise.forwardSaveRequest();
     });
+  } else {
+    Fliplet.Widget.save(data).then(function () {
+      Fliplet.Studio.emit('reload-widget-instance', widgetId);
+    });
   }
 
-  Fliplet.Widget.save(data).then(function () {
-    Fliplet.Studio.emit('reload-widget-instance', widgetId);
-  });
 }
