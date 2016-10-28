@@ -6,6 +6,7 @@
 	user-select: none !important;
 	-webkit-user-modify: read-only !important;
 }
+
 .list-panels ul {
 	display: -webkit-flex;
 	-webkit-flex-flow: row wrap;
@@ -14,25 +15,31 @@
 	margin: 0;
 	padding: 0;
 	list-style: none;
+	font-size: 16px;
 }
+
 .list-panels .panels {
 	display: inline-block;
 	-webkit-column-break-inside: avoid;
 	-moz-column-break-inside: avoid;
 	column-break-inside: avoid;
 }
+
 .list-panels ul > li {
 	border: 1px solid #e0e0e0;
 }
+
 .three-columns .panels {
 	width: 98%;
 	margin: 0 1% 15px;
 	padding-top: 0;
 	border-radius: 6px;
 }
+
 .three-columns .panels.linked {
 	cursor: pointer;
 }
+
 .list-panels ul > li .list-image {
 	position: relative;
 	width: 100%;
@@ -42,6 +49,7 @@
 	background-repeat: no-repeat;
 	background-size: cover;
 }
+
 .list-panels ul > li .list-desc {
 	position: relative;
 	background: #FFF;
@@ -52,16 +60,18 @@
 	text-align: left;
 	word-wrap: break-word;
 }
+
 .list-panels .list-desc .list-title {
 	font-size: 1em;
 	font-weight: bold;
 	margin: 0;
 }
+
 .list-panels .list-desc .list-title + p {
 	font-size: 0.9em;
-	color: #999;
+	color: #333;
+	opacity: 0.75;
 	margin: 0.5em 0 0;
-	font-weight: 200;
 }
 @media (min-width: 480px) {
 	.three-columns .panels {
@@ -72,6 +82,7 @@
 	.three-columns .panels {
 		width: 31.33%;
 	}
+
 	.list-panels ul > li .list-image {
 		padding-top: 56.72%;
 	}
