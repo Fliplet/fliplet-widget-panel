@@ -223,25 +223,34 @@ function initLinkProvider(item){
   linkPromises.push(linkActionProvider);
 }
 
+var imageProvider;
 function initImageProvider(item){
-    var imageProvider = Fliplet.Widget.open('com.fliplet.image-manager', {
-      // Also send the data I have locally, so that
-      // the interface gets repopulated with the same stuff
-      data: item.imageConf,
-      // Events fired from the provider
-      onEvent: function (event, data) {
-        if (event === 'interface-validate') {
-          Fliplet.Widget.toggleSaveButton(data.isValid === true);
-        }
-      },
-      single: true,
-      type: 'image'
-    });
+  imageProvider = Fliplet.Widget.open('com.fliplet.image-manager', {
+    // Also send the data I have locally, so that
+    // the interface gets repopulated with the same stuff
+    data: item.imageConf,
+    // Events fired from the provider
+    onEvent: function (event, data) {
+      if (event === 'interface-validate') {
+        Fliplet.Widget.toggleSaveButton(data.isValid === true);
+      }
+    },
+    single: true,
+    type: 'image'
+  });
+
+  Fliplet.Studio.emit('widget-save-label-update', {
+      text: 'Select & Save'
+  });
 
   imageProvider.then(function (data) {
-    item.imageConf = data.data;
-    $('[data-id="' + item.id + '"] .thumb-image img').attr("src",data.data.thumbnail);
-    save();
+    if(data.data) {
+      item.imageConf = data.data;
+      $('[data-id="' + item.id + '"] .thumb-image img').attr("src",data.data.thumbnail);
+      save();
+    }
+    imageProvider = null;
+    Fliplet.Studio.emit('widget-save-label-reset');
     return Promise.resolve();
   });
 }
@@ -331,7 +340,11 @@ function checkPanelLength() {
 }
 
 Fliplet.Widget.onSaveRequest(function () {
-  save(true);
+  if(imageProvider){
+    imageProvider.forwardSaveRequest();
+  } else {
+    save(true);
+  }
 });
 
 var debounceSave = _.debounce( save, 500);
