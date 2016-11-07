@@ -131,9 +131,6 @@ $(".tab-content")
       $(this).parents('.add-image-holder').find('.thumb-holder').addClass('hidden');
       save();
     })
-    .on('click', '.change-color', function() {
-      alert('You will be able to set up a color for this list item.');
-    })
     .on('keyup change paste', '.list-item-title', function() {
       var $listItem = $(this).parents('.panel');
       setListItemTitle($listItem.index(), $(this).val());
@@ -300,11 +297,16 @@ function addListItem(data) {
 function initColorPicker(item){
   var picker = new CP(document.querySelector('#list-item-color-'+item.id));
 
+  $('#list-item-color-'+item.id).on('keyup change paste', function() {
+    picker.set(this.value);
+    picker.trigger("change", [this.value.substring(1)], 'main-change');
+    debounceSave();
+  });
+
   picker.on("change", function(color) {
     this.target.value = '#' + color;
     $($(this.target).siblings('div')[0]).css('background-color', '#'+color);
     debounceSave();
-
   }, 'main-change');
 
   var colors = ['1d3f68', '00abd2', '036b95', 'ffd21d', 'ed9119', 'e03629', '831811', '5e0f0f', '23a437', '076c31'], box;
