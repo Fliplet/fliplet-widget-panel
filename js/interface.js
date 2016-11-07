@@ -131,9 +131,6 @@ $(".tab-content")
       $(this).parents('.add-image-holder').find('.thumb-holder').addClass('hidden');
       save();
     })
-    .on('click', '.change-color', function() {
-      alert('You will be able to set up a color for this list item.');
-    })
     .on('keyup change paste', '.list-item-title', function() {
       var $listItem = $(this).parents('.panel');
       setListItemTitle($listItem.index(), $(this).val());
@@ -223,25 +220,34 @@ function initLinkProvider(item){
   linkPromises.push(linkActionProvider);
 }
 
+var imageProvider;
 function initImageProvider(item){
-    var imageProvider = Fliplet.Widget.open('com.fliplet.image-manager', {
-      // Also send the data I have locally, so that
-      // the interface gets repopulated with the same stuff
-      data: item.imageConf,
-      // Events fired from the provider
-      onEvent: function (event, data) {
-        if (event === 'interface-validate') {
-          Fliplet.Widget.toggleSaveButton(data.isValid === true);
-        }
-      },
-      single: true,
-      type: 'image'
-    });
+  imageProvider = Fliplet.Widget.open('com.fliplet.image-manager', {
+    // Also send the data I have locally, so that
+    // the interface gets repopulated with the same stuff
+    data: item.imageConf,
+    // Events fired from the provider
+    onEvent: function (event, data) {
+      if (event === 'interface-validate') {
+        Fliplet.Widget.toggleSaveButton(data.isValid === true);
+      }
+    },
+    single: true,
+    type: 'image'
+  });
+
+  Fliplet.Studio.emit('widget-save-label-update', {
+      text: 'Select & Save'
+  });
 
   imageProvider.then(function (data) {
-    item.imageConf = data.data;
-    $('[data-id="' + item.id + '"] .thumb-image img').attr("src",data.data.thumbnail);
-    save();
+    if(data.data) {
+      item.imageConf = data.data;
+      $('[data-id="' + item.id + '"] .thumb-image img').attr("src",data.data.thumbnail);
+      save();
+    }
+    imageProvider = null;
+    Fliplet.Studio.emit('widget-save-label-reset');
     return Promise.resolve();
   });
 }
@@ -291,11 +297,16 @@ function addListItem(data) {
 function initColorPicker(item){
   var picker = new CP(document.querySelector('#list-item-color-'+item.id));
 
+  $('#list-item-color-'+item.id).on('keyup change paste', function() {
+    picker.set(this.value);
+    picker.trigger("change", [this.value.substring(1)], 'main-change');
+    debounceSave();
+  });
+
   picker.on("change", function(color) {
     this.target.value = '#' + color;
     $($(this.target).siblings('div')[0]).css('background-color', '#'+color);
     debounceSave();
-
   }, 'main-change');
 
   var colors = ['1d3f68', '00abd2', '036b95', 'ffd21d', 'ed9119', 'e03629', '831811', '5e0f0f', '23a437', '076c31'], box;
@@ -331,7 +342,11 @@ function checkPanelLength() {
 }
 
 Fliplet.Widget.onSaveRequest(function () {
-  save(true);
+  if(imageProvider){
+    imageProvider.forwardSaveRequest();
+  } else {
+    save(true);
+  }
 });
 
 var debounceSave = _.debounce( save, 500);
