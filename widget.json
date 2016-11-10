@@ -36,5 +36,8 @@
       "js/build.js",
       "css/build.css"
     ]
-  }
+  },
+  "references": [
+    "items.$.linkAction.page:page"
+  ]
 }
