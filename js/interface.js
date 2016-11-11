@@ -236,6 +236,15 @@ function initImageProvider(item){
     type: 'image'
   });
 
+  Fliplet.Widget.toggleCancelButton(false);
+
+  window.addEventListener('message', function(event) {
+    if (event.data === 'cancel-button-pressed') {
+      Fliplet.Widget.toggleCancelButton(true);
+      imageProvider.close();
+    }
+  });
+
   Fliplet.Studio.emit('widget-save-label-update', {
       text: 'Select & Save'
   });
