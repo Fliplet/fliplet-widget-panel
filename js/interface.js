@@ -236,11 +236,11 @@ function initImageProvider(item){
     type: 'image'
   });
 
-  Fliplet.Widget.toogleCancelButton(false);
+  Fliplet.Widget.toggleCancelButton(false);
 
   window.addEventListener('message', function(event) {
     if (event.data === 'cancel-button-pressed') {
-      Fliplet.Widget.toogleCancelButton(true);
+      Fliplet.Widget.toggleCancelButton(true);
       imageProvider.close();
     }
   });
