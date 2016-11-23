@@ -13,7 +13,6 @@ _.forEach(data.items,function (item){
   initColorPicker(item);
 });
 
-var listLength = data.items.length + 1;
 var accordionCollapsed = false;
 
 var $accordionContainer = $('#accordion');
@@ -73,7 +72,6 @@ $(".tab-content")
 
       $(this).parents('.panel').remove();
       checkPanelLength();
-      listLength--;
       save();
 
       $(this).parents('.panel').remove();
@@ -154,8 +152,8 @@ $(".tab-content")
     .on('click', '.new-list-item', function() {
       var item ={};
       item.id = makeid(8);
-      item.number = listLength++;
       item.linkAction = null;
+      item.title = 'Panel item ' + ($('#accordion .panel').length + 1);
       item.description = "";
       data.items.push(item);
 
