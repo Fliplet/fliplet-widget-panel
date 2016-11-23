@@ -19,11 +19,7 @@
                       <i class="fa fa-ellipsis-v"></i><i class="fa fa-ellipsis-v"></i>
                     </div>
                     <span class="fa fa-chevron-down"></span>
-                    <span class="panel-title-text">{{#unless title}}
-                        Panel item {{number}}
-                      {{else}}
-                        {{~title~}}
-                      {{/unless}}</span>
+                    <span class="panel-title-text">{{~title~}}</span>
                   </h4>
                   <a href="#"><span class="icon-delete fa fa-trash"></span></a>
                 </div>
@@ -36,11 +32,7 @@
                           <label for="list-item-title-{{id}}">Title</label>
                         </div>
                         <div class="col-sm-8">
-                          <input type="text" class="form-control list-item-title" id="list-item-title-{{id}}" name="list-item-title-{{id}}" placeholder="Enter title" value="{{#unless title}}
-                            Panel item {{number}}
-                          {{else}}
-                            {{~title~}}
-                          {{/unless}}">
+                          <input type="text" class="form-control list-item-title" id="list-item-title-{{id}}" name="list-item-title-{{id}}" placeholder="Enter title" value="{{~title~}}">
                         </div>
                       </div>
 
@@ -137,7 +129,7 @@
             <i class="fa fa-ellipsis-v"></i><i class="fa fa-ellipsis-v"></i>
           </div>
           <span class="fa fa-chevron-down"></span>
-          <span class="panel-title-text">Panel title \{{number}}</span>
+          <span class="panel-title-text">\{{~title~}}</span>
         </h4>
         <a href="#"><span class="icon-delete fa fa-trash"></span></a>
       </div>
@@ -150,7 +142,7 @@
                 <label for="list-item-title-\{{id}}">Title</label>
               </div>
               <div class="col-sm-8">
-                <input type="text" class="form-control list-item-title" id="list-item-title-\{{id}}" name="list-item-title-\{{id}}" placeholder="Enter title" value="Panel title \{{number}}">
+                <input type="text" class="form-control list-item-title" id="list-item-title-\{{id}}" name="list-item-title-\{{id}}" placeholder="Enter title" value="\{{~title~}}">
               </div>
             </div>
 
