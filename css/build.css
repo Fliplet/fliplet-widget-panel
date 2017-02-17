@@ -34,6 +34,7 @@
 	margin: 0 1% 15px;
 	padding-top: 0;
 	border-radius: 6px;
+	overflow: hidden;
 }
 
 .three-columns .panels.linked {
@@ -44,7 +45,6 @@
 	position: relative;
 	width: 100%;
 	padding-top: 50%;
-	border-radius: 6px 6px 0 0;
 	background-position: center center;
 	background-repeat: no-repeat;
 	background-size: cover;
