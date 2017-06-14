@@ -294,8 +294,12 @@ function initColorPicker(item) {
     container: true
   });
 
-  $('#list-item-color-' + item.id).on('focus', function() {
+  $('#list-item-color-' + item.id).on('click', function() {
     $(this).prev('.input-group-addon').find('i').trigger('click');
+  });
+
+  $('.input-group-addon i').on('click', function() {
+    $(this).parents('.input-group-addon').next('#list-item-color-' + item.id).trigger('focus');
   });
 
   $('#list-item-color-' + item.id).on('change', function() {
