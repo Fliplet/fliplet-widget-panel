@@ -9,9 +9,7 @@ if (_.isUndefined(data.items)) {
   data.items = [];
 }
 _.forEach(data.items, function(item) {
-  if (_.isObject(item.linkAction)) {
-    initLinkProvider(item);
-  }
+  initLinkProvider(item);
   initColorPicker(item);
 });
 
@@ -85,23 +83,6 @@ $(".tab-content")
     $(this).parents('.panel').remove();
     checkPanelLength();
   })
-  .on('click', '.list-item-set-link', function() {
-
-    var $item = $(this).closest("[data-id], .panel"),
-      id = $item.data('id'),
-      item = _.find(data.items, {
-        id: id
-      });
-
-    initLinkProvider(item);
-
-    if ($(this).siblings().hasClass('hidden')) {
-      $(this).siblings().removeClass('hidden');
-    }
-    $(this).addClass('hidden');
-    $(this).siblings('.link-remove').show();
-
-  })
   .on('click', '.add-image', function() {
 
     var $item = $(this).closest("[data-id], .panel"),
@@ -116,23 +97,6 @@ $(".tab-content")
     if ($(this).siblings('.thumb-holder').hasClass('hidden')) {
       $(this).siblings('.thumb-holder').removeClass('hidden');
     }
-  })
-  .on('click', '.link-remove', function() {
-
-    var $item = $(this).closest("[data-id], .panel"),
-      id = $item.data('id'),
-      item = _.find(data.items, {
-        id: id
-      });
-
-    _.remove(linkPromises, {
-      id: id
-    });
-    item.linkAction = null;
-    $('[data-id="' + item.id + '"] .add-link').empty();
-    $(this).addClass('hidden');
-    $(this).siblings('.list-item-set-link').removeClass('hidden');
-    save();
   })
   .on('click', '.image-remove', function() {
 
@@ -176,6 +140,7 @@ $(".tab-content")
     data.items.push(item);
 
     addListItem(item);
+    initLinkProvider(item);
 
     checkPanelLength();
 
@@ -228,7 +193,7 @@ function initLinkProvider(item) {
   });
 
   linkActionProvider.then(function(data) {
-    item.linkAction = data ? data.data : {};
+    item.linkAction = data && data.data.action !== 'none' ? data.data : null;
     return Promise.resolve();
   });
 

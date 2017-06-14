@@ -43,23 +43,7 @@
                   </div>
                 </div>
 
-                <div class="form-group">
-                  <div class="col-sm-4 control-label">
-                    <label for="list-item-link-{{id}}">Link</label>
-                  </div>
-                  <div class="col-sm-8">
-                    <div class="btn btn-default list-item-set-link {{#if linkAction}} hidden{{/if}}">Add Link</div>
-                    <div class="btn btn-link text-danger link-remove {{#unless linkAction}} hidden {{/unless}}">Remove Link</div>
-                    <div class="add-link"></div>
-                  </div>
-                </div>
-
-                <h2><small>Configure panel background</small></h2>
-                <div class="row">
-                  <div class="col-xs-12">
-                    <p class="help-block">Adding an image will override the color chosen. Whoever if the image has transparency, the color will be shown underneath.</p>
-                  </div>
-                </div>
+                <div class="add-link"></div>
 
                 <div class="form-group">
                   <div class="col-sm-4 control-label">
@@ -73,6 +57,12 @@
                   </div>
                 </div>
 
+                <div class="row">
+                  <div class="col-xs-12">
+                    <p class="help-block">Adding an image will override the chosen colour. However if the image has transparency, the colour will be shown underneath.</p>
+                  </div>
+                </div>
+
                 <div class="form-group">
                   <div class="col-sm-4 control-label">
                     <label for="list-item-image-{{id}}">Image</label>
@@ -82,7 +72,7 @@
                       <div class="btn btn-default list-item-set-image add-image">{{#unless imageConf}}Add Image{{else}}Replace Image {{/unless}}</div>
                       <div class="thumb-holder {{#unless imageConf}}hidden{{/unless}}">
                         <div class="thumb-image"><img src="{{imageConf.thumbnail}}" /></div>
-                        <div class="btn btn-link text-danger image-remove">Remove Image</div>
+                        <a href="#" class="text-danger image-remove">Remove Image</a>
                       </div>
                     </div>
                     <div class="list-item-image"></div>
@@ -152,23 +142,7 @@
               </div>
             </div>
 
-            <div class="form-group">
-              <div class="col-sm-4 control-label">
-                <label for="list-item-link-\{{id}}">Link</label>
-              </div>
-              <div class="col-sm-8">
-                <div class="btn btn-default list-item-set-link">Add Link</div>
-                <div class="btn btn-link text-danger link-remove hidden">Remove Link</div>
-                <div class="add-link"></div>
-              </div>
-            </div>
-
-            <h2><small>Configure panel background</small></h2>
-            <div class="row">
-              <div class="col-xs-12">
-                <p class="help-block">Adding an image will override the color chosen. Whoever if the image has transparency, the color will be shown underneath.</p>
-              </div>
-            </div>
+            <div class="add-link"></div>
 
             <div class="form-group">
               <div class="col-sm-4 control-label">
@@ -182,6 +156,12 @@
               </div>
             </div>
 
+            <div class="row">
+              <div class="col-xs-12">
+                <p class="help-block">Adding an image will override the chosen colour. However if the image has transparency, the colour will be shown underneath.</p>
+              </div>
+            </div>
+
             <div class="form-group">
               <div class="col-sm-4 control-label">
                 <label for="list-item-image-mpsK94eK">Image</label>
@@ -191,7 +171,7 @@
                   <div class="btn btn-default list-item-set-image add-image">Add Image</div>
                   <div class="thumb-holder hidden">
                     <div class="thumb-image"><img src="" /></div>
-                    <div class="btn btn-link text-danger image-remove">Remove Image</div>
+                    <a href="#" class="text-danger image-remove">Remove Image</a>
                   </div>
                 </div>
                 <div class="list-item-image"></div>
