@@ -39,6 +39,7 @@
   },
   "references": [
     "items.$.linkAction.page:page",
+    "items.$.linkAction.files.id:mediaFile",
     "items.$.imageConf.id:mediaFile"
   ]
 }
