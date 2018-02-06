@@ -5,8 +5,8 @@
       <li class="panels{{#if linkAction}} linked{{/if}}" data-panel-item-id="{{id}}">
         <div class="list-image" style="background-color: {{color}};{{#if imageConf}} background-image: url('{{imageConf.url}}'){{/if}}"><p class=hidden></p></div>
         <div class="list-desc">
-          <p class="list-title">{{title}}</p>
-          {{#if description}}<p>{{nl2br description}}</p>{{/if}}
+          <p class="list-title">{{{title}}}</p>
+          {{#if description}}<p>{{{nl2br description}}}</p>{{/if}}
         </div>
       </li>
       {{/each}}
