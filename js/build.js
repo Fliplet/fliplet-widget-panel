@@ -1,13 +1,29 @@
-$('.linked[data-panel-item-id]').click(function(event) {
-  event.preventDefault();
+Fliplet.Widget.instance('panels', function (data) {
+  var $container = $(this);
 
-  var data = Fliplet.Widget.getData($(this).parents('[data-panels-id]').data('panels-id'));
+  function authenticateImages() {
+    _.forEach(data.items, function (item) {
+      if (!_.get(item, 'imageConf.url') || !Fliplet.Media.isRemoteUrl(item.imageConf.url)) {
+        return;
+      }
 
-  var itemData = _.find(data.items, {
-    id: $(this).data('panel-item-id')
+      $container.find('[data-panel-item-id="' + item.id + '"] .list-image').css({
+        backgroundImage: 'url(' + Fliplet.Media.authenticate(item.imageConf.url) + ')'
+      });
+    });
+  }
+
+  $container.on('click', '.linked[data-panel-item-id]', function(event) {
+    event.preventDefault();
+
+    var itemData = _.find(data.items, {
+      id: $(this).data('panel-item-id')
+    });
+
+    if (_.get(itemData, 'linkAction') && !_.isEmpty(_.get(itemData, 'linkAction'))) {
+      Fliplet.Navigate.to(itemData.linkAction);
+    }
   });
 
-  if (!_.isUndefined(itemData) && (!_.isUndefined(itemData.linkAction) && !_.isEmpty(itemData.linkAction))) {
-    Fliplet.Navigate.to(itemData.linkAction);
-  }
+  Fliplet().then(authenticateImages);
 });
