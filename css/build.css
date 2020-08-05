@@ -32,6 +32,7 @@
 
 .three-columns .panels {
   width: 98%;
+  max-width: 98%;
   margin: 0 1% 15px;
   padding-top: 0;
   border-radius: 6px;
@@ -77,12 +78,14 @@
 @media (min-width: 480px) {
   .three-columns .panels {
     width: 48%;
+    max-width: 48%;
   }
 }
 
 @media (min-width: 640px) {
   .three-columns .panels {
     width: 31.33%;
+    max-width: 31.33%;
   }
 
   .list-panels ul>li .list-image {
