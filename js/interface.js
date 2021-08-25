@@ -276,6 +276,7 @@ function initImageProvider(item) {
   window.addEventListener('message', function(event) {
     if (event.data === 'cancel-button-pressed') {
       Fliplet.Widget.toggleCancelButton(true);
+      Fliplet.Widget.toggleSaveButton(true);
       imageProvider.close();
 
       if (_.isEmpty(item.imageConf)) {
