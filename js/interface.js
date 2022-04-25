@@ -11,9 +11,6 @@ var omitPages = page ? [page.id] : [];
 if (_.isUndefined(data.items)) {
   data.items = [];
 }
-_.forEach(data.items, function(item) {
-  initColorPicker(item);
-});
 
 var accordionCollapsed = false;
 
@@ -336,7 +333,6 @@ function setListItemTitle(index, title) {
 function addListItem(data) {
   var $newPanel = $(templates.panel(data));
   $accordionContainer.append($newPanel);
-  initColorPicker(data);
 
   $newPanel.find('.form-control.list-item-desc').attr('placeholder', 'Enter description');
   $newPanel.find('.form-control:eq(0)').select();
@@ -344,25 +340,6 @@ function addListItem(data) {
     scrollTop: $('.tab-content').height()
   }, 200, function() {
     $('.form-horizontal').trigger('scroll');
-  });
-}
-
-function initColorPicker(item) {
-  // bind plugins on inputs
-  $('#list-item-color-' + item.id).parents('[colorpicker-component]').colorpicker({
-    container: true
-  });
-
-  $('#list-item-color-' + item.id).on('click', function() {
-    $(this).prev('.input-group-addon').find('i').trigger('click');
-  });
-
-  $('.input-group-addon i').on('click', function() {
-    $(this).parents('.input-group-addon').next('#list-item-color-' + item.id).trigger('focus');
-  });
-
-  $('#list-item-color-' + item.id).on('change', function() {
-    debounceSave();
   });
 }
 
@@ -394,7 +371,6 @@ function save(notifyComplete, dragStop) {
   _.forEach(data.items, function(item) {
     item.description = $('#list-item-desc-' + item.id).val();
     item.title = $('#list-item-title-' + item.id).val();
-    item.color = $('#list-item-color-' + item.id).val();
   });
 
   // forward save request to all providers
