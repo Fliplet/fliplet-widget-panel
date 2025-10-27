@@ -13,7 +13,7 @@ Fliplet.Widget.instance('panels', function (data) {
     });
   }
 
-  $container.on('click', '.linked[data-panel-item-id]', function(event) {
+  $container.on('click', '.linked[data-panel-item-id]', async function(event) {
     event.preventDefault();
 
     var itemData = _.find(data.items, {
@@ -21,7 +21,15 @@ Fliplet.Widget.instance('panels', function (data) {
     });
 
     if (_.get(itemData, 'linkAction') && !_.isEmpty(_.get(itemData, 'linkAction'))) {
-      Fliplet.Navigate.to(itemData.linkAction);
+      const action = itemData.linkAction || {};
+
+      try {
+        action.dynamicContext = await Fliplet.Widget.getDynamicContext($(this));
+      } catch (e) {
+        action.dynamicContext = {};
+      }
+
+      Fliplet.Navigate.to(action);
     }
   });
 
