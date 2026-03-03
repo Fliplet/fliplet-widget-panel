@@ -2,8 +2,8 @@ Fliplet.Widget.instance('panels', function (data) {
   var $container = $(this);
 
   function authenticateImages() {
-    _.forEach(data.items, function (item) {
-      if (!_.get(item, 'imageConf.url') || !Fliplet.Media.isRemoteUrl(item.imageConf.url)) {
+    Fliplet.Utils.forEach(data.items, function (item) {
+      if (!Fliplet.Utils.get(item, 'imageConf.url') || !Fliplet.Media.isRemoteUrl(item.imageConf.url)) {
         return;
       }
 
@@ -16,11 +16,11 @@ Fliplet.Widget.instance('panels', function (data) {
   $container.on('click', '.linked[data-panel-item-id]', function(event) {
     event.preventDefault();
 
-    var itemData = _.find(data.items, {
+    var itemData = Fliplet.Utils.find(data.items, {
       id: $(this).data('panel-item-id')
     });
 
-    if (_.get(itemData, 'linkAction') && !_.isEmpty(_.get(itemData, 'linkAction'))) {
+    if (Fliplet.Utils.get(itemData, 'linkAction') && !Fliplet.Utils.isEmpty(Fliplet.Utils.get(itemData, 'linkAction'))) {
       Fliplet.Navigate.to(itemData.linkAction);
     }
   });

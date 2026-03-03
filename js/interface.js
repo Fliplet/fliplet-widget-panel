@@ -8,7 +8,7 @@ var data = Fliplet.Widget.getData() || {
 var page = Fliplet.Widget.getPage();
 var omitPages = page ? [page.id] : [];
 
-if (_.isUndefined(data.items)) {
+if (Fliplet.Utils.isUndefined(data.items)) {
   data.items = [];
 }
 
@@ -21,7 +21,7 @@ var templates = {
 
 var $testElement = $('#testelement');
 
-var debounceSave = _.debounce(save, 500);
+var debounceSave = Fliplet.Utils.debounce(save, 500);
 
 // Indicate dragging state
 var dragging = false;
@@ -40,7 +40,7 @@ setTimeout(function() {
     start: function(event, ui) {
       dragging = true;
       var itemId = $(ui.item).data('id');
-      var itemProvider = _.find(linkPromises, function(provider) {
+      var itemProvider = Fliplet.Utils.find(linkPromises, function(provider) {
         return provider.id === itemId;
       });
 
@@ -48,7 +48,7 @@ setTimeout(function() {
 
       // removes provider
       itemProvider = null;
-      _.remove(linkPromises, {
+      Fliplet.Utils.remove(linkPromises, {
         id: itemId
       });
 
@@ -57,7 +57,7 @@ setTimeout(function() {
     },
     stop: function(event, ui) {
       var itemId = $(ui.item).data('id');
-      var movedItem = _.find(data.items, function(item) {
+      var movedItem = Fliplet.Utils.find(data.items, function(item) {
         return item.id === itemId;
       });
 
@@ -68,7 +68,7 @@ setTimeout(function() {
       var sortedIds = $(".panel-group").sortable("toArray", {
         attribute: 'data-id'
       });
-      data.items = _.sortBy(data.items, function(item) {
+      data.items = Fliplet.Utils.sortBy(data.items, function(item) {
         return sortedIds.indexOf(item.id);
       });
 
@@ -92,10 +92,10 @@ $(".tab-content")
     var $item = $(this).closest("[data-id], .panel"),
       id = $item.data('id');
 
-    _.remove(data.items, {
+    Fliplet.Utils.remove(data.items, {
       id: id
     });
-    _.remove(linkPromises, {
+    Fliplet.Utils.remove(linkPromises, {
       id: id
     });
 
@@ -110,7 +110,7 @@ $(".tab-content")
 
     var $item = $(this).closest("[data-id], .panel"),
       id = $item.data('id'),
-      item = _.find(data.items, {
+      item = Fliplet.Utils.find(data.items, {
         id: id
       });
 
@@ -125,7 +125,7 @@ $(".tab-content")
 
     var $item = $(this).closest("[data-id], .panel"),
       id = $item.data('id'),
-      item = _.find(data.items, {
+      item = Fliplet.Utils.find(data.items, {
         id: id
       });
 
@@ -181,10 +181,10 @@ $(".tab-content")
 
     // Get item ID / Get provider / Get item
     var itemID = $(this).parents('.panel').data('id');
-    var itemProvider = _.find(linkPromises, function(provider) {
+    var itemProvider = Fliplet.Utils.find(linkPromises, function(provider) {
       return provider.id === itemID;
     });
-    var item = _.find(data.items, function(item) {
+    var item = Fliplet.Utils.find(data.items, function(item) {
       return item.id === itemID;
     });
     // Init the link provider when the accordion opens
@@ -278,7 +278,7 @@ function initImageProvider(item) {
       Fliplet.Widget.toggleSaveButton(true);
       imageProvider.close();
 
-      if (_.isEmpty(item.imageConf)) {
+      if (Fliplet.Utils.isEmpty(item.imageConf)) {
         $('[data-id="' + item.id + '"] .add-image-holder').find('.add-image').text('Add image');
         $('[data-id="' + item.id + '"] .add-image-holder').find('.thumb-holder').addClass('hidden');
       }
@@ -370,7 +370,7 @@ Fliplet.Widget.onSaveRequest(function() {
 });
 
 function save(notifyComplete, dragStop) {
-  _.forEach(data.items, function(item) {
+  Fliplet.Utils.forEach(data.items, function(item) {
     item.description = $('#list-item-desc-' + item.id).val();
     item.title = $('#list-item-title-' + item.id).val();
   });
